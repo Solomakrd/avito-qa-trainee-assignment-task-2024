@@ -9,7 +9,7 @@ test('water counter has valid screenshot', async ({page}) => {
     const ecoImpactPage = new AvitoCareEcoImpactPage(page);
     await ecoImpactPage.goto();
     await expect(ecoImpactPage.waterCounter).toBeVisible()
-    await expect(ecoImpactPage.waterCounter).toHaveScreenshot(screenshotPath('water_counter.png'), { timeout: 10000 });
+    await expect(ecoImpactPage.waterCounter).toHaveScreenshot(screenshotPath('water_counter.png'));
 });
 
 test('CO2 counter has valid screenshot', async ({page}) => {
