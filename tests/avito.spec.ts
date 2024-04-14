@@ -499,3 +499,30 @@ test('Test 54. Проверка отображения счётчика энер
     await ecoImpactPage.goto();
     await expect(ecoImpactPage.energyCounter).toHaveScreenshot(screenshotPath('Test 54.png'));
 });
+
+test('Test 55. Проверка отображения счётчика СО2 при введении в поле значение отрицательные числа на странице авторизованного пользователя.', async ({ page }) => {
+    await page.route('*/**/web/1/charity/ecoImpact/init', async route => {
+        await route.fulfill({json: initResponseJSON(-1000, 0, 0)});
+    });
+    const ecoImpactPage = new AvitoCareEcoImpactPage(page);
+    await ecoImpactPage.goto();
+    await expect(ecoImpactPage.co2Counter).toHaveScreenshot(screenshotPath('Test 55.png'));
+});
+
+test('Test 56. Проверка отображения счётчика воды при введении в поле значение отрицательные числа на странице авторизованного пользователя.', async ({ page }) => {
+    await page.route('*/**/web/1/charity/ecoImpact/init', async route => {
+        await route.fulfill({json: initResponseJSON(0, -1000, 0)});
+    });
+    const ecoImpactPage = new AvitoCareEcoImpactPage(page);
+    await ecoImpactPage.goto();
+    await expect(ecoImpactPage.waterCounter).toHaveScreenshot(screenshotPath('Test 56.png'));
+});
+
+test('Test 57. Проверка отображения счётчика энергии при введении в поле значение отрицательные числа на странице авторизованного пользователя.', async ({ page }) => {
+    await page.route('*/**/web/1/charity/ecoImpact/init', async route => {
+        await route.fulfill({json: initResponseJSON(0, 0, -1000)});
+    });
+    const ecoImpactPage = new AvitoCareEcoImpactPage(page);
+    await ecoImpactPage.goto();
+    await expect(ecoImpactPage.energyCounter).toHaveScreenshot(screenshotPath('Test 57.png'));
+});
