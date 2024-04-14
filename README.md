@@ -24,6 +24,9 @@ cd avito-qa-trainee-assignment-task-2024
 ```
 npm install
 ```
+```
+npx playwright install
+```
 
 Запустить автотесты командой 
 ```
